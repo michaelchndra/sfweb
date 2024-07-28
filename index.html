@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Script</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/">List Script</a>
+        <a href="/list-applications">List Applications</a>
+    </div>
+    <div class="main-content">
+        <h1>List Script</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Script</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for script in scripts %}
+                <tr>
+                    <td>{{ script.name }}</td>
+                    <td class="{{ script.status|lower }}">{{ script.status }}</td>
+                    <td>{{ script.update_date }}</td>
+                    <td><a href="{{ url_for('create_shortlink', id=script.id) }}" target="_blank">Download</a></td>
+                    <td><a href="{{ script.website }}" target="_blank">Register</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
